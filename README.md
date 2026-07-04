@@ -109,3 +109,150 @@ You can easily host this React app on GitHub Pages for free:
    npm run deploy
    ```
 This will compile the React app and deploy it instantly.
+
+## 📁 Project Structure
+
+```
+instaclass/
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## 🔄 Application Workflow
+
+1. User signs in using the simulated Google login.
+2. User creates or joins a classroom.
+3. Notes are shared to the classroom feed.
+4. Students comment with questions.
+5. Other students reply to questions.
+6. Note author verifies the best answer.
+7. Students communicate using private messaging.
+
+## ✨ Feature Summary
+
+| Feature | Description |
+|---------|-------------|
+| Authentication | Simulated Google Login |
+| Classrooms | Create and Join using Class Code |
+| Notes | Markdown and Code Block Support |
+| Comments | Threaded Discussions |
+| Verified Answers | Author can verify solutions |
+| Messaging | Private Chats |
+| Responsive UI | Mobile and Desktop Support |
+
+## 🌐 Browser Compatibility
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
+
+## 📸 Screenshots
+
+### Home Feed
+![Home Feed](screenshots/home.png)
+
+### Classroom Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Private Chat
+![Chat](screenshots/chat.png)
+
+## 🏗️ Application Architecture
+
+This explains how the application is organized.
+
+---
+
+# 3. 📂 Folder Description
+
+Instead of only showing folders:
+
+```markdown
+## 📂 Folder Description
+
+| Folder | Purpose |
+|---------|----------|
+| public | Static assets |
+| src/components | Reusable UI components |
+| src/pages | Application pages |
+| src/assets | Images and icons |
+| src/styles | CSS stylesheets |
+| App.jsx | Main application component |
+| main.jsx | React entry point |
+
+## ⚙️ Available Scripts
+
+| Command | Description |
+|----------|-------------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Build production files |
+| `npm run preview` | Preview production build |
+| `npm run deploy` | Deploy to GitHub Pages |
+
+## 📋 System Requirements
+
+- Node.js 18+
+- npm 10+
+- Modern Web Browser
+
+## 🚀 Future Roadmap
+
+- Firebase Authentication
+- Cloud Database
+- File Attachments
+- Image Uploads
+- Voice Messages
+- Video Calling
+- Notifications
+- AI-based Note Summarization
+
+## 🔒 Security Features
+
+- Classroom access using unique class codes
+- User profile isolation
+- Private one-to-one messaging
+- Client-side session management
+
+## 📱 Responsive Design
+
+The application is optimized for:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile Devices
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+
+- React Development
+- Component-Based Design
+- State Management
+- Responsive UI
+- Client-side Data Persistence
+- GitHub Collaboration
+
+## 🐞 Troubleshooting
+### npm install fails
+
+Delete node_modules and reinstall:
+
+```bash
+rm -rf node_modules
+npm install
+
+## 📜 License
+
+This project is licensed under the MIT License.
