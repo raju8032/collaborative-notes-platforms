@@ -233,3 +233,26 @@ The application is optimized for:
 - Tablet
 - Mobile Devices
 
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+
+- React Development
+- Component-Based Design
+- State Management
+- Responsive UI
+- Client-side Data Persistence
+- GitHub Collaboration
+
+## 🐞 Troubleshooting
+### npm install fails
+
+Delete node_modules and reinstall:
+
+```bash
+rm -rf node_modules
+npm install
+
+## 📜 License
+
+This project is licensed under the MIT License.
