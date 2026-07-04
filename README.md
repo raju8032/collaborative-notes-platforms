@@ -206,3 +206,30 @@ Instead of only showing folders:
 - npm 10+
 - Modern Web Browser
 
+## 🚀 Future Roadmap
+
+- Firebase Authentication
+- Cloud Database
+- File Attachments
+- Image Uploads
+- Voice Messages
+- Video Calling
+- Notifications
+- AI-based Note Summarization
+
+## 🔒 Security Features
+
+- Classroom access using unique class codes
+- User profile isolation
+- Private one-to-one messaging
+- Client-side session management
+
+## 📱 Responsive Design
+
+The application is optimized for:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile Devices
+
