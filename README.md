@@ -109,3 +109,49 @@ You can easily host this React app on GitHub Pages for free:
    npm run deploy
    ```
 This will compile the React app and deploy it instantly.
+
+## 📁 Project Structure
+
+```
+instaclass/
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## 🔄 Application Workflow
+
+1. User signs in using the simulated Google login.
+2. User creates or joins a classroom.
+3. Notes are shared to the classroom feed.
+4. Students comment with questions.
+5. Other students reply to questions.
+6. Note author verifies the best answer.
+7. Students communicate using private messaging.
+
+## ✨ Feature Summary
+
+| Feature | Description |
+|---------|-------------|
+| Authentication | Simulated Google Login |
+| Classrooms | Create and Join using Class Code |
+| Notes | Markdown and Code Block Support |
+| Comments | Threaded Discussions |
+| Verified Answers | Author can verify solutions |
+| Messaging | Private Chats |
+| Responsive UI | Mobile and Desktop Support |
+
+## 🌐 Browser Compatibility
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
