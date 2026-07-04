@@ -155,3 +155,16 @@ instaclass/
 - Microsoft Edge
 - Mozilla Firefox
 - Safari
+
+## 📸 Screenshots
+
+### Home Feed
+![Home Feed](screenshots/home.png)
+
+### Classroom Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Private Chat
+![Chat](screenshots/chat.png)
+
+## 🏗️ Application Architecture
