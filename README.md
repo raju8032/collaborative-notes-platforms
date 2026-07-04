@@ -155,3 +155,104 @@ instaclass/
 - Microsoft Edge
 - Mozilla Firefox
 - Safari
+
+## 📸 Screenshots
+
+### Home Feed
+![Home Feed](screenshots/home.png)
+
+### Classroom Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Private Chat
+![Chat](screenshots/chat.png)
+
+## 🏗️ Application Architecture
+
+This explains how the application is organized.
+
+---
+
+# 3. 📂 Folder Description
+
+Instead of only showing folders:
+
+```markdown
+## 📂 Folder Description
+
+| Folder | Purpose |
+|---------|----------|
+| public | Static assets |
+| src/components | Reusable UI components |
+| src/pages | Application pages |
+| src/assets | Images and icons |
+| src/styles | CSS stylesheets |
+| App.jsx | Main application component |
+| main.jsx | React entry point |
+
+## ⚙️ Available Scripts
+
+| Command | Description |
+|----------|-------------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Build production files |
+| `npm run preview` | Preview production build |
+| `npm run deploy` | Deploy to GitHub Pages |
+
+## 📋 System Requirements
+
+- Node.js 18+
+- npm 10+
+- Modern Web Browser
+
+## 🚀 Future Roadmap
+
+- Firebase Authentication
+- Cloud Database
+- File Attachments
+- Image Uploads
+- Voice Messages
+- Video Calling
+- Notifications
+- AI-based Note Summarization
+
+## 🔒 Security Features
+
+- Classroom access using unique class codes
+- User profile isolation
+- Private one-to-one messaging
+- Client-side session management
+
+## 📱 Responsive Design
+
+The application is optimized for:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile Devices
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+
+- React Development
+- Component-Based Design
+- State Management
+- Responsive UI
+- Client-side Data Persistence
+- GitHub Collaboration
+
+## 🐞 Troubleshooting
+### npm install fails
+
+Delete node_modules and reinstall:
+
+```bash
+rm -rf node_modules
+npm install
+
+## 📜 License
+
+This project is licensed under the MIT License.
