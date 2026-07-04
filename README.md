@@ -168,3 +168,41 @@ instaclass/
 ![Chat](screenshots/chat.png)
 
 ## 🏗️ Application Architecture
+
+This explains how the application is organized.
+
+---
+
+# 3. 📂 Folder Description
+
+Instead of only showing folders:
+
+```markdown
+## 📂 Folder Description
+
+| Folder | Purpose |
+|---------|----------|
+| public | Static assets |
+| src/components | Reusable UI components |
+| src/pages | Application pages |
+| src/assets | Images and icons |
+| src/styles | CSS stylesheets |
+| App.jsx | Main application component |
+| main.jsx | React entry point |
+
+## ⚙️ Available Scripts
+
+| Command | Description |
+|----------|-------------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Build production files |
+| `npm run preview` | Preview production build |
+| `npm run deploy` | Deploy to GitHub Pages |
+
+## 📋 System Requirements
+
+- Node.js 18+
+- npm 10+
+- Modern Web Browser
+
