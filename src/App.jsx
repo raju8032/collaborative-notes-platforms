@@ -693,7 +693,7 @@ export default function App() {
                   {activeClassroomId ? `📚 ${classrooms.find(c=>c.id===activeClassroomId)?.name}` : '🌎 My Note Stream'}
                 </h2>
               </div>
-              <FeedView
+              /*<FeedView
                 posts={filteredPosts}
                 classrooms={userClassrooms}
                 currentUser={currentUser}
@@ -701,7 +701,29 @@ export default function App() {
                 onCreatePost={handleCreatePost}
                 onOpenPostDetail={setActivePostId}
                 onAddComment={handleAddComment}
-              />
+              />*/
+	    {filteredPosts.length === 0 ? (
+  		<div
+    		  style={{
+      		    textAlign: "center",
+      		    marginTop: "60px",
+      		    color: "#999"
+   		  }}
+  		>
+    		    <h3>No matching notes found.</h3>
+    		    <p>Try another keyword.</p>
+  		</div>
+	     ) : (
+  		<FeedView
+    		    posts={filteredPosts}
+    		    classrooms={userClassrooms}
+    		    currentUser={currentUser}
+    		    onLikePost={handleLikePost}
+    		    onCreatePost={handleCreatePost}
+   		    onOpenPostDetail={setActivePostId}
+    		    onAddComment={handleAddComment}
+		  />
+		)}
             </div>
             <ClassroomsSidebar
               classrooms={userClassrooms}
