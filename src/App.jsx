@@ -1029,6 +1029,65 @@ const getRecentActivity = () => {
               </div>
             </div>
 
+	    <h3
+style={{
+marginTop:"35px",
+marginBottom:"15px"
+}}
+>
+
+🔥 Most Popular Note
+
+</h3>
+
+{
+getMostLikedPost()
+
+?
+
+(
+
+<div className="post-card">
+
+<div className="post-card-header">
+
+<span>
+
+{getMostLikedPost().classroomName}
+
+</span>
+
+</div>
+
+<div className="post-body">
+
+{getMostLikedPost().content}
+
+</div>
+
+<div
+style={{
+marginTop:"10px"
+}}
+>
+
+❤️ {getMostLikedPost().likes.length} Likes
+
+</div>
+
+</div>
+
+)
+
+:
+
+(
+
+<p>No notes available.</p>
+
+)
+}
+
             <h3 style={{ fontFamily: 'var(--font-title)', marginBottom: '20px', fontSize: '1.25rem' }}>My Note Contributions</h3>
             
             {getUserOwnPosts().length === 0 ? (
