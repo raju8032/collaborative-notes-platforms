@@ -486,6 +486,57 @@ export default function App() {
   const getUserOwnPosts = () => {
     return posts.filter(p => p.authorId === currentUser?.id);
   };
+  // ==========================
+// Profile Analytics
+// ==========================
+
+const getTotalLikes = () => {
+  return getUserOwnPosts().reduce(
+    (total, post) => total + post.likes.length,
+    0
+  );
+};
+
+const getTotalComments = () => {
+  return getUserOwnPosts().reduce(
+    (total, post) => total + (post.commentsCount || 0),
+    0
+  );
+};
+
+const getAverageLikes = () => {
+  const myPosts = getUserOwnPosts();
+
+  if (myPosts.length === 0) return 0;
+
+  return (
+    getTotalLikes() / myPosts.length
+  ).toFixed(1);
+};
+
+const getMostLikedPost = () => {
+  const myPosts = getUserOwnPosts();
+
+  if (myPosts.length === 0) return null;
+
+  return myPosts.reduce((best, current) =>
+    current.likes.length > best.likes.length
+      ? current
+      : best
+  );
+};
+
+const getRecentActivity = () => {
+  return getUserOwnPosts()
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    )
+    .slice(0, 5);
+};
+
+
 
   // 3. Render Landing / Google Sign In Selection screen
   if (!currentUser) {
@@ -832,6 +883,32 @@ export default function App() {
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '6px' }}>📧 {currentUser.email}</div>
                 
                 <div className="profile-stats">
+		<div
+  		 style={{
+    		    display: "grid",
+    		    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+    		    gap: "18px",
+    		    marginTop: "30px"
+ 		 }}
+		>
+
+  			<div className="profile-header-card">
+    			<h4>Total Likes</h4>
+    			<h2>{getTotalLikes()}</h2>
+  		   </div>
+
+  		   <div className="profile-header-card">
+    			<h4>Total Comments</h4>
+    			<h2>{getTotalComments()}</h2>
+  		   </div>
+
+  		   <div className="profile-header-card">
+    			<h4>Average Likes</h4>
+    			<h2>{getAverageLikes()}</h2>
+  		   </div>
+
+		</div>
+
                   <div className="stat-item">
                     <span className="stat-num">{getUserOwnPosts().length}</span>
                     <span className="stat-label">Shared Notes</span>
@@ -843,6 +920,133 @@ export default function App() {
                 </div>
               </div>
             </div>
+
+	  <h3
+	  style={{
+		marginTop:"35px",
+		marginBottom:"15px"
+	  }}
+	   >
+
+	   🔥 Most Popular Note
+
+	   </h3>
+
+	   {	
+	    getMostLikedPost()
+
+	    ?
+
+	    (	
+
+	    <div className="post-card">
+
+	    <div className="post-card-header">
+
+	    <span>
+
+	    {getMostLikedPost().classroomName}
+
+	    </span>
+
+	    </div>
+
+	    <div className="post-body">
+
+	    {getMostLikedPost().content}
+
+	    </div>
+
+	    <div
+	     style={{
+		marginTop:"10px"
+	    }}
+	    >
+
+	    ❤️ {getMostLikedPost().likes.length} Likes
+
+	    </div>
+
+	    </div>
+
+	    )
+
+	    :
+
+	    (			
+
+	    <p>No notes available.</p>
+
+	    )
+	    }
+ 
+	    <h3
+	style={{
+	marginTop:"35px",
+	marginBottom:"15px"
+	}}
+	>
+
+	📈 Recent Activity
+
+	</h3>
+
+	<div>
+
+	{
+
+	getRecentActivity().map(post=>(
+
+	<div
+	key={post.id}
+	className="post-card"
+	style={{marginBottom:"15px"}}
+	>
+
+	<div>
+
+	📚 {post.classroomName}
+
+	</div>
+
+	<div
+	style={{
+	marginTop:"8px",
+	fontWeight:"500"
+	}}
+	>
+
+	{post.content.substring(0,80)}...
+
+	</div>
+
+	<div
+	style={{
+	marginTop:"10px",
+	fontSize:"13px",
+	color:"gray"
+	}}
+	>
+
+	❤️ {post.likes.length}
+
+	|
+
+	💬 {post.commentsCount}
+	
+	|
+
+	📅 {new Date(post.createdAt).toLocaleDateString()}
+
+	</div>
+
+	</div>
+
+	))
+
+	}
+
+	</div>
 
             <h3 style={{ fontFamily: 'var(--font-title)', marginBottom: '20px', fontSize: '1.25rem' }}>My Note Contributions</h3>
             
