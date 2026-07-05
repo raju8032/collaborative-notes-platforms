@@ -992,30 +992,30 @@ const getRecentActivity = () => {
                 
                 <div className="profile-stats">
 		<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
-    gap: "18px",
-    marginTop: "30px"
-  }}
->
+  		 style={{
+    		    display: "grid",
+    		    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+    		    gap: "18px",
+    		    marginTop: "30px"
+ 		 }}
+		>
 
-  <div className="profile-header-card">
-    <h4>Total Likes</h4>
-    <h2>{getTotalLikes()}</h2>
-  </div>
+  			<div className="profile-header-card">
+    			<h4>Total Likes</h4>
+    			<h2>{getTotalLikes()}</h2>
+  		   </div>
 
-  <div className="profile-header-card">
-    <h4>Total Comments</h4>
-    <h2>{getTotalComments()}</h2>
-  </div>
+  		   <div className="profile-header-card">
+    			<h4>Total Comments</h4>
+    			<h2>{getTotalComments()}</h2>
+  		   </div>
 
-  <div className="profile-header-card">
-    <h4>Average Likes</h4>
-    <h2>{getAverageLikes()}</h2>
-  </div>
+  		   <div className="profile-header-card">
+    			<h4>Average Likes</h4>
+    			<h2>{getAverageLikes()}</h2>
+  		   </div>
 
-</div>
+		</div>
 
                   <div className="stat-item">
                     <span className="stat-num">{getUserOwnPosts().length}</span>
