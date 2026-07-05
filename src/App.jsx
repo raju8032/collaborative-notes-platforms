@@ -1029,7 +1029,7 @@ const getRecentActivity = () => {
               </div>
             </div>
 
-	    <h3
+	  <h3
 	  style={{
 		marginTop:"35px",
 		marginBottom:"15px"
@@ -1087,6 +1087,74 @@ const getRecentActivity = () => {
 
 	    )
 	    }
+ 
+	    <h3
+style={{
+marginTop:"35px",
+marginBottom:"15px"
+}}
+>
+
+📈 Recent Activity
+
+</h3>
+
+<div>
+
+{
+
+getRecentActivity().map(post=>(
+
+<div
+key={post.id}
+className="post-card"
+style={{marginBottom:"15px"}}
+>
+
+<div>
+
+📚 {post.classroomName}
+
+</div>
+
+<div
+style={{
+marginTop:"8px",
+fontWeight:"500"
+}}
+>
+
+{post.content.substring(0,80)}...
+
+</div>
+
+<div
+style={{
+marginTop:"10px",
+fontSize:"13px",
+color:"gray"
+}}
+>
+
+❤️ {post.likes.length}
+
+|
+
+💬 {post.commentsCount}
+
+|
+
+📅 {new Date(post.createdAt).toLocaleDateString()}
+
+</div>
+
+</div>
+
+))
+
+}
+
+</div>
 
             <h3 style={{ fontFamily: 'var(--font-title)', marginBottom: '20px', fontSize: '1.25rem' }}>My Note Contributions</h3>
             
