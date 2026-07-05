@@ -669,6 +669,27 @@ export default function App() {
             <div style={{ flexGrow: 1 }}>
               <div style={{ maxWidth: '640px', margin: '0 auto', padding: '32px 16px 8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '1.6rem', fontWeight: 800 }}>
+		<div
+  		   style={{
+    			   maxWidth: "640px",
+      		           margin: "0 auto 20px",
+    			   padding: "0 16px"
+			  }}
+			>
+  		    <input
+    			type="text"
+  			placeholder="🔍 Search notes..."
+    			value={searchQuery}
+    			onChange={(e) => setSearchQuery(e.target.value)}
+    			className="input-styled"
+    			style={{
+      				width: "100%",
+      				padding: "12px",
+      				borderRadius: "12px",
+      				fontSize: "15px"
+			    }}
+		  />
+		</div>
                   {activeClassroomId ? `📚 ${classrooms.find(c=>c.id===activeClassroomId)?.name}` : '🌎 My Note Stream'}
                 </h2>
               </div>
