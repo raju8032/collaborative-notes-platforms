@@ -105,6 +105,110 @@ export default function FeedView({
     return date.toLocaleDateString();
   };
 
+  // ==========================================
+// Note Analytics Helper Functions
+// ==========================================
+
+// Count total words in a note
+const getWordCount = (text) => {
+  if (!text) return 0;
+
+  return text
+    .replace(/```[\s\S]*?```/g, "")
+    .trim()
+    .split(/\s+/)
+    .filter(word => word.length > 0).length;
+};
+
+// Count total characters
+const getCharacterCount = (text) => {
+  if (!text) return 0;
+
+  return text.length;
+};
+
+// Estimate reading time
+const getReadingTime = (text) => {
+  const words = getWordCount(text);
+
+  const minutes = Math.max(
+    1,
+    Math.ceil(words / 200)
+  );
+
+  return `${minutes} min read`;
+};
+
+// Count markdown code blocks
+const getCodeBlockCount = (text) => {
+  if (!text) return 0;
+
+  const matches = text.match(/```/g);
+
+  if (!matches) return 0;
+
+  return matches.length / 2;
+};
+
+// Count inline code snippets
+const getInlineCodeCount = (text) => {
+  if (!text) return 0;
+
+  const matches = text.match(/`[^`\n]+`/g);
+
+  return matches ? matches.length : 0;
+};
+
+// Popular note badge
+const isPopularPost = (post) => {
+  return post.likes.length >= 5;
+};
+
+// Trending note badge
+const isTrendingPost = (post) => {
+  return (
+    post.likes.length >= 3 &&
+    (post.commentsCount || 0) >= 2
+  );
+};
+
+// Long note detector
+const isLongPost = (text) => {
+  return getWordCount(text) > 120;
+};
+
+// Download note
+const downloadNote = (post) => {
+
+  const element = document.createElement("a");
+
+  const file = new Blob(
+    [post.content],
+    { type: "text/plain" }
+  );
+
+  element.href = URL.createObjectURL(file);
+
+  element.download =
+    `${post.classroomName}_${post.id}.txt`;
+
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+
+};
+
+// Copy note
+const copyNote = (post) => {
+
+  navigator.clipboard.writeText(post.content);
+
+  alert("Note copied successfully!");
+
+};
+
   return (
     <div className="feed-content">
       {/* Create Post Section */}
@@ -175,6 +279,83 @@ export default function FeedView({
               <div className="post-body">
                 {formatContent(post.content)}
               </div>
+	      {/* ==============================
+    Note Analytics Panel
+============================== */}
+
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    marginTop: "14px",
+    marginBottom: "12px",
+    padding: "12px",
+    borderRadius: "10px",
+    background: "rgba(255,255,255,0.05)",
+    fontSize: "13px"
+  }}
+>
+
+  <span>📖 {getReadingTime(post.content)}</span>
+
+  <span>📝 {getWordCount(post.content)} words</span>
+
+  <span>🔤 {getCharacterCount(post.content)} chars</span>
+
+  <span>💻 {getCodeBlockCount(post.content)} code blocks</span>
+
+  <span>⌨ {getInlineCodeCount(post.content)} inline code</span>
+
+</div>
+
+{/* Popular & Trending Badges */}
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    marginBottom: "12px",
+    flexWrap: "wrap"
+  }}
+>
+
+  {isPopularPost(post) && (
+
+    <span
+      style={{
+        background: "#16a34a",
+        color: "white",
+        padding: "4px 10px",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "bold"
+      }}
+    >
+      ⭐ Popular Note
+    </span>
+
+  )}
+
+  {isTrendingPost(post) && (
+
+    <span
+      style={{
+        background: "#ea580c",
+        color: "white",
+        padding: "4px 10px",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "bold"
+      }}
+    >
+      🔥 Trending
+    </span>
+
+  )}
+
+</div>
+
 
               {/* Action Bar */}
               <div className="post-actions-bar">
@@ -197,6 +378,20 @@ export default function FeedView({
                   </svg>
                   <span>{commentsCount} Doubts</span>
                 </button>
+
+		<button
+  className="post-action-btn"
+  onClick={() => copyNote(post)}
+>
+  📋 Copy
+</button>
+
+<button
+  className="post-action-btn"
+  onClick={() => downloadNote(post)}
+>
+  📄 Download
+</button>
               </div>
 
               {/* Info panel */}
