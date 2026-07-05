@@ -1030,63 +1030,63 @@ const getRecentActivity = () => {
             </div>
 
 	    <h3
-style={{
-marginTop:"35px",
-marginBottom:"15px"
-}}
->
+	  style={{
+		marginTop:"35px",
+		marginBottom:"15px"
+	  }}
+	   >
 
-🔥 Most Popular Note
+	   🔥 Most Popular Note
 
-</h3>
+	   </h3>
 
-{
-getMostLikedPost()
+	   {	
+	    getMostLikedPost()
 
-?
+	    ?
 
-(
+	    (	
 
-<div className="post-card">
+	    <div className="post-card">
 
-<div className="post-card-header">
+	    <div className="post-card-header">
 
-<span>
+	    <span>
 
-{getMostLikedPost().classroomName}
+	    {getMostLikedPost().classroomName}
 
-</span>
+	    </span>
 
-</div>
+	    </div>
 
-<div className="post-body">
+	    <div className="post-body">
 
-{getMostLikedPost().content}
+	    {getMostLikedPost().content}
 
-</div>
+	    </div>
 
-<div
-style={{
-marginTop:"10px"
-}}
->
+	    <div
+	     style={{
+		marginTop:"10px"
+	    }}
+	    >
 
-❤️ {getMostLikedPost().likes.length} Likes
+	    ❤️ {getMostLikedPost().likes.length} Likes
 
-</div>
+	    </div>
 
-</div>
+	    </div>
 
-)
+	    )
 
-:
+	    :
 
-(
+	    (			
 
-<p>No notes available.</p>
+	    <p>No notes available.</p>
 
-)
-}
+	    )
+	    }
 
             <h3 style={{ fontFamily: 'var(--font-title)', marginBottom: '20px', fontSize: '1.25rem' }}>My Note Contributions</h3>
             
