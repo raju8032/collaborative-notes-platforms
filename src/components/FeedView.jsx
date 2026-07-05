@@ -279,6 +279,83 @@ const copyNote = (post) => {
               <div className="post-body">
                 {formatContent(post.content)}
               </div>
+	      {/* ==============================
+    Note Analytics Panel
+============================== */}
+
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    marginTop: "14px",
+    marginBottom: "12px",
+    padding: "12px",
+    borderRadius: "10px",
+    background: "rgba(255,255,255,0.05)",
+    fontSize: "13px"
+  }}
+>
+
+  <span>📖 {getReadingTime(post.content)}</span>
+
+  <span>📝 {getWordCount(post.content)} words</span>
+
+  <span>🔤 {getCharacterCount(post.content)} chars</span>
+
+  <span>💻 {getCodeBlockCount(post.content)} code blocks</span>
+
+  <span>⌨ {getInlineCodeCount(post.content)} inline code</span>
+
+</div>
+
+{/* Popular & Trending Badges */}
+
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    marginBottom: "12px",
+    flexWrap: "wrap"
+  }}
+>
+
+  {isPopularPost(post) && (
+
+    <span
+      style={{
+        background: "#16a34a",
+        color: "white",
+        padding: "4px 10px",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "bold"
+      }}
+    >
+      ⭐ Popular Note
+    </span>
+
+  )}
+
+  {isTrendingPost(post) && (
+
+    <span
+      style={{
+        background: "#ea580c",
+        color: "white",
+        padding: "4px 10px",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "bold"
+      }}
+    >
+      🔥 Trending
+    </span>
+
+  )}
+
+</div>
+
 
               {/* Action Bar */}
               <div className="post-actions-bar">
@@ -301,6 +378,20 @@ const copyNote = (post) => {
                   </svg>
                   <span>{commentsCount} Doubts</span>
                 </button>
+
+		<button
+  className="post-action-btn"
+  onClick={() => copyNote(post)}
+>
+  📋 Copy
+</button>
+
+<button
+  className="post-action-btn"
+  onClick={() => downloadNote(post)}
+>
+  📄 Download
+</button>
               </div>
 
               {/* Info panel */}
