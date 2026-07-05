@@ -127,6 +127,9 @@ export default function App() {
   
   // Explore page search states
   const [exploreSearchQuery, setExploreSearchQuery] = useState('');
+  
+  // Home Feed Search
+  const [searchQuery, setSearchQuery] = useState('');
 
   // 1. Initialize data on load
   useEffect(() => {
@@ -417,7 +420,7 @@ export default function App() {
   };
 
   // Filters posts to only render either 'all joined/created' or the 'active classroom scope'
-  const getFilteredPosts = () => {
+  /*const getFilteredPosts = () => {
     const joinedKey = `instaclass_joined_${currentUser?.id}`;
     const joinedList = JSON.parse(localStorage.getItem(joinedKey) || '[]');
     
@@ -431,7 +434,46 @@ export default function App() {
     
     // Show posts belonging to classrooms joined/created or by Professor Smith (system defaults)
     return posts.filter(p => accessibleClassroomIds.includes(p.classroomId) || p.authorId === 'usr_smith');
-  };
+  };*/
+  const getFilteredPosts = () => {
+  const joinedKey = `instaclass_joined_${currentUser?.id}`;
+  const joinedList = JSON.parse(localStorage.getItem(joinedKey) || '[]');
+
+  const createdClassIds = classrooms
+    .filter(c => c.createdBy === currentUser?.id)
+    .map(c => c.id);
+
+  const accessibleClassroomIds = Array.from(
+    new Set([...joinedList, ...createdClassIds])
+  );
+
+  let filtered = [];
+
+  if (activeClassroomId) {
+    filtered = posts.filter(
+      p => p.classroomId === activeClassroomId
+    );
+  } else {
+    filtered = posts.filter(
+      p =>
+        accessibleClassroomIds.includes(p.classroomId) ||
+        p.authorId === 'usr_smith'
+    );
+  }
+
+  // Search notes by content, classroom or author
+  if (searchQuery.trim() !== '') {
+    const query = searchQuery.toLowerCase();
+
+    filtered = filtered.filter(post =>
+      post.content.toLowerCase().includes(query) ||
+      post.classroomName.toLowerCase().includes(query) ||
+      post.authorName.toLowerCase().includes(query)
+    );
+  }
+
+  return filtered;
+};
 
   // Get active classrooms list of the user
   const getUserClassrooms = () => {
