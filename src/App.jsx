@@ -355,6 +355,36 @@ export default function App() {
     });
     updateStorage('instaclass_posts', updatedPosts);
   };
+// ====================================
+// Toggle Bookmark
+// ====================================
+
+const handleToggleBookmark = (postId) => {
+
+  let updatedBookmarks = [];
+
+  if (bookmarks.includes(postId)) {
+
+    updatedBookmarks =
+      bookmarks.filter(id => id !== postId);
+
+  } else {
+
+    updatedBookmarks = [
+      ...bookmarks,
+      postId
+    ];
+
+  }
+
+  setBookmarks(updatedBookmarks);
+
+  localStorage.setItem(
+    "instaclass_bookmarks",
+    JSON.stringify(updatedBookmarks)
+  );
+
+};
 
   // Doubts / Comments Actions
   const handleAddComment = (postId, text, parentCommentId = null) => {
@@ -773,7 +803,7 @@ const getRecentActivity = () => {
     		    <p>Try another keyword.</p>
   		</div>
 	     ) : (
-  		<FeedView
+  		/*<FeedView
     		    posts={filteredPosts}
     		    classrooms={userClassrooms}
     		    currentUser={currentUser}
@@ -781,7 +811,24 @@ const getRecentActivity = () => {
     		    onCreatePost={handleCreatePost}
    		    onOpenPostDetail={setActivePostId}
     		    onAddComment={handleAddComment}
-		  />
+		  />*/
+		     <FeedView
+    posts={filteredPosts}
+    classrooms={userClassrooms}
+    currentUser={currentUser}
+
+    bookmarks={bookmarks}
+
+    onToggleBookmark={handleToggleBookmark}
+
+    onLikePost={handleLikePost}
+
+    onCreatePost={handleCreatePost}
+
+    onOpenPostDetail={setActivePostId}
+
+    onAddComment={handleAddComment}
+/>
 		)}
             </div>
             <ClassroomsSidebar
