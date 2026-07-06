@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 
+/*export default function FeedView({
+  posts,
+  classrooms,
+  currentUser,
+  onLikePost,*/
 export default function FeedView({
   posts,
   classrooms,
   currentUser,
+  bookmarks,
+  onToggleBookmark,
   onLikePost,
   onCreatePost,
   onOpenPostDetail,
@@ -259,6 +266,7 @@ const copyNote = (post) => {
         posts.map((post) => {
           const isLiked = post.likes.includes(currentUser.id);
           const commentsCount = post.commentsCount || 0;
+	  const isBookmarked = bookmarks.includes(post.id);
           return (
             <article key={post.id} className="post-card">
               {/* Header */}
@@ -368,6 +376,27 @@ const copyNote = (post) => {
                   </svg>
                   <span>{post.likes.length} Likes</span>
                 </button>
+		<button
+  className={`post-action-btn ${
+    isBookmarked ? "liked" : ""
+  }`}
+  onClick={() => onToggleBookmark(post.id)}
+>
+  <svg
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill={isBookmarked ? "currentColor" : "none"}
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/>
+  </svg>
+
+  <span>
+    {isBookmarked ? "Saved" : "Save"}
+  </span>
+</button>
 
                 <button
                   className="post-action-btn"
