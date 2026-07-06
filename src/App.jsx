@@ -112,6 +112,10 @@ export default function App() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [messages, setMessages] = useState([]);
+     // ======================
+    // Bookmark State
+   // ======================
+   const [bookmarks, setBookmarks] = useState([]);
   
   // Navigation / UI states
   const [activeTab, setActiveTab] = useState('home'); // home, explore, messages, profile
