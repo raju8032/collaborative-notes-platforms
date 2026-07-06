@@ -112,6 +112,10 @@ export default function App() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [messages, setMessages] = useState([]);
+     // ======================
+    // Bookmark State
+   // ======================
+   const [bookmarks, setBookmarks] = useState([]);
   
   // Navigation / UI states
   const [activeTab, setActiveTab] = useState('home'); // home, explore, messages, profile
@@ -150,6 +154,9 @@ export default function App() {
     const storedPosts = JSON.parse(localStorage.getItem('instaclass_posts') || '[]');
     const storedComments = JSON.parse(localStorage.getItem('instaclass_comments') || '[]');
     const storedMessages = JSON.parse(localStorage.getItem('instaclass_messages') || '[]');
+    const storedBookmarks = JSON.parse(
+  localStorage.getItem("instaclass_bookmarks") || "[]"
+);	  
     const storedCurrentUser = JSON.parse(localStorage.getItem('instaclass_current_user') || 'null');
     
     setUsers(storedUsers);
@@ -157,6 +164,7 @@ export default function App() {
     setPosts(storedPosts);
     setComments(storedComments);
     setMessages(storedMessages);
+    setBookmarks(storedBookmarks);
     if (storedCurrentUser) {
       setCurrentUser(storedCurrentUser);
     }
@@ -347,6 +355,36 @@ export default function App() {
     });
     updateStorage('instaclass_posts', updatedPosts);
   };
+// ====================================
+// Toggle Bookmark
+// ====================================
+
+const handleToggleBookmark = (postId) => {
+
+  let updatedBookmarks = [];
+
+  if (bookmarks.includes(postId)) {
+
+    updatedBookmarks =
+      bookmarks.filter(id => id !== postId);
+
+  } else {
+
+    updatedBookmarks = [
+      ...bookmarks,
+      postId
+    ];
+
+  }
+
+  setBookmarks(updatedBookmarks);
+
+  localStorage.setItem(
+    "instaclass_bookmarks",
+    JSON.stringify(updatedBookmarks)
+  );
+
+};
 
   // Doubts / Comments Actions
   const handleAddComment = (postId, text, parentCommentId = null) => {
@@ -648,7 +686,7 @@ const getRecentActivity = () => {
 
   // 4. Render Main App once authenticated
   const filteredPosts = getFilteredPosts();
-  const userClassrooms = getUserClassrooms();
+  const userClassrooms = classrooms;
   const activePost = posts.find(p => p.id === activePostId);
   const activePostComments = comments.filter(c => c.postId === activePostId);
 
@@ -715,7 +753,7 @@ const getRecentActivity = () => {
       {/* Main Panel views */}
       <div className="main-wrapper">
         
-        {activeTab === 'home' && (
+/*        {activeTab === 'home' && (
           <>
             <div style={{ flexGrow: 1 }}>
               <div style={{ maxWidth: '640px', margin: '0 auto', padding: '32px 16px 8px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -744,15 +782,6 @@ const getRecentActivity = () => {
                   {activeClassroomId ? `📚 ${classrooms.find(c=>c.id===activeClassroomId)?.name}` : '🌎 My Note Stream'}
                 </h2>
               </div>
-              /*<FeedView
-                posts={filteredPosts}
-                classrooms={userClassrooms}
-                currentUser={currentUser}
-                onLikePost={handleLikePost}
-                onCreatePost={handleCreatePost}
-                onOpenPostDetail={setActivePostId}
-                onAddComment={handleAddComment}
-              />*/
 	    {filteredPosts.length === 0 ? (
   		<div
     		  style={{
@@ -765,15 +794,17 @@ const getRecentActivity = () => {
     		    <p>Try another keyword.</p>
   		</div>
 	     ) : (
-  		<FeedView
+		 <FeedView
     		    posts={filteredPosts}
     		    classrooms={userClassrooms}
     		    currentUser={currentUser}
+    		    bookmarks={bookmarks}
+   		    onToggleBookmark={handleToggleBookmark}
     		    onLikePost={handleLikePost}
     		    onCreatePost={handleCreatePost}
-   		    onOpenPostDetail={setActivePostId}
+    		    onOpenPostDetail={setActivePostId}
     		    onAddComment={handleAddComment}
-		  />
+		/>
 		)}
             </div>
             <ClassroomsSidebar
@@ -784,7 +815,82 @@ const getRecentActivity = () => {
               onJoinClassroom={handleJoinClassroom}
             />
           </>
-        )}
+        )} */
+	{activeTab === 'home' && (
+  <>
+    <div style={{ flexGrow: 1 }}>
+      <div
+        style={{
+          maxWidth: '640px',
+          margin: '0 auto',
+          padding: '32px 16px 8px 16px'
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: 'var(--font-title)',
+            fontSize: '1.6rem',
+            fontWeight: 800,
+            marginBottom: '12px'
+          }}
+        >
+          {activeClassroomId
+            ? `📚 ${classrooms.find(c => c.id === activeClassroomId)?.name}`
+            : '🌎 My Note Stream'}
+        </h2>
+
+        <div style={{ marginBottom: '20px' }}>
+          <input
+            type="text"
+            placeholder="🔍 Search notes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="input-styled"
+            style={{
+              width: '100%',
+              padding: '12px',
+              borderRadius: '12px',
+              fontSize: '15px'
+            }}
+          />
+        </div>
+      </div>
+
+      {filteredPosts.length === 0 ? (
+        <div
+          style={{
+            textAlign: 'center',
+            marginTop: '60px',
+            color: '#999'
+          }}
+        >
+          <h3>No matching notes found.</h3>
+          <p>Try another keyword.</p>
+        </div>
+      ) : (
+        <FeedView
+          posts={filteredPosts}
+          classrooms={userClassrooms}
+          currentUser={currentUser}
+          bookmarks={bookmarks}
+          onToggleBookmark={handleToggleBookmark}
+          onLikePost={handleLikePost}
+          onCreatePost={handleCreatePost}
+          onOpenPostDetail={setActivePostId}
+          onAddComment={handleAddComment}
+        />
+      )}
+    </div>
+
+    <ClassroomsSidebar
+      classrooms={userClassrooms}
+      activeClassroomId={activeClassroomId}
+      setActiveClassroomId={setActiveClassroomId}
+      onCreateClassroom={handleCreateClassroom}
+      onJoinClassroom={handleJoinClassroom}
+    />
+  </>
+)}
 
         {activeTab === 'explore' && (
           <div className="explore-page">
