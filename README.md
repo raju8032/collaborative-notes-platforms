@@ -13,8 +13,13 @@ Designed with a sleek, modern glassmorphic theme, it provides a fully responsive
 *   **Instagram-Style Study Feed**: Share public note cards (supports codeblocks, markdown paragraphs, and syntax highlights).
 *   **Threaded Doubts & Answers**: Post comments under posts to ask doubts. Classmates can post replies, and note authors can toggle a **✓ Verified Solution** badge for clear answers.
 *   **Private Direct Messages**: Message classmates by searching their username.
-*   **Real-time Cross-Tab Sync**: Utilizes browser state listening to synchronize private chats instantly across multiple open tabs or windows without requiring a backend database.
-
+*   **Real-time Cross-Tab Sync**: Utilizes browser state listening to synchronize private chats instantly across multiple open tabs or windows without requiring a backend databas
+*   **Search Notes** – Search notes instantly using keywords, authors, or classroom names.
+*   **Advanced Search** – Apply multiple search filters to quickly find relevant notes.
+*   **Profile Analytics Dashboard** – Visualize contribution statistics, engagement, and recent activity.
+*   **Bookmark & Saved Notes** – Save important notes and access them anytime from your collection.
+*   **Copy Notes** – Copy note content directly to the clipboard for quick reuse.
+*   **Download Notes** – Export notes as text files for offline reading and backup.
 ---
 
 ## 🛠️ Tech Stack
