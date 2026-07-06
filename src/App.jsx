@@ -154,6 +154,9 @@ export default function App() {
     const storedPosts = JSON.parse(localStorage.getItem('instaclass_posts') || '[]');
     const storedComments = JSON.parse(localStorage.getItem('instaclass_comments') || '[]');
     const storedMessages = JSON.parse(localStorage.getItem('instaclass_messages') || '[]');
+    const storedBookmarks = JSON.parse(
+  localStorage.getItem("instaclass_bookmarks") || "[]"
+);	  
     const storedCurrentUser = JSON.parse(localStorage.getItem('instaclass_current_user') || 'null');
     
     setUsers(storedUsers);
@@ -161,6 +164,7 @@ export default function App() {
     setPosts(storedPosts);
     setComments(storedComments);
     setMessages(storedMessages);
+    setBookmarks(storedBookmarks);
     if (storedCurrentUser) {
       setCurrentUser(storedCurrentUser);
     }
